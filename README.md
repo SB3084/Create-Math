@@ -158,18 +158,6 @@ server {
 - 🛡️ Container isolation for rendering processes
 - 📝 Input validation for scripts
 
-## Troubleshooting
-
-**Common Issues**
-
-| Symptom |                          | Solution |
-|---------|                          |----------|
-| Missing LaTeX packages |      | Install full TeX Live distribution |
-| FFmpeg errors |               | Verify ffmpeg installation with `ffmpeg -version` |
-| Long render times |           | Use `-ql` flag for low quality previews |
-| Browser caching issues |      | Add timestamp parameter to video URL |
-| Python import errors |        | Verify Manim installation with `manim --version` |
-
 **View Logs**
 
 # Backend logs
