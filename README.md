@@ -36,8 +36,8 @@ This project enables users to upload a Python-based animation script through a w
 
 1. **Clone Repository**
 ```bash
-git clone https://github.com/your-username/manim-renderer.git
-cd manim-renderer
+git clone https://github.com/SB3084/CREATE-MATH.git
+cd create-math
 ```
 
 2. **Backend Setup**
@@ -75,17 +75,24 @@ docker-compose up --build
 ## Project Structure
 
 ```
-manim-renderer/
-├── backend/               # FastAPI application
-│   ├── main.py            # Core API logic
-│   ├── requirements.txt   # Python dependencies
-│   ├── Dockerfile         # Container configuration
-│   └── media/             # Temporary render files
-├── frontend/              # React application
-│   ├── src/               # Source files
-│   ├── public/            # Static assets
-│   └── Dockerfile         # Frontend container config
-└── docker-compose.yml     # Orchestration configuration
+create-math/
+├── backend/
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── static/
+│   ├── media/
+│   └── Dockerfile
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── Editor.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.js
+│   └── Dockerfile
+└── docker-compose.yml
 ```
 
 ## Configuration
@@ -111,19 +118,6 @@ VITE_API_BASE=http://localhost:8000
 3. Click "Render" to start animation processing
 4. View real-time status updates
 5. Watch rendered animation in the preview pane
-
-Example Script:
-```python
-from manim import *
-
-class MainScene(Scene):
-    def construct(self):
-        circle = Circle()
-        square = Square()
-        self.play(Create(square))
-        self.play(Transform(square, circle))
-        self.wait(1)
-```
 
 ## Deployment
 
@@ -179,10 +173,10 @@ server {
 **View Logs**
 
 # Backend logs
-docker logs manim-renderer-backend-1
+docker logs create-math-backend-1
 
 # Frontend logs
-docker logs manim-renderer-frontend-1
+docker logs create-math-frontend-1
 ```
 ## Contributing ##
 
