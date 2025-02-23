@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
 import axios from 'axios';
 
@@ -16,17 +16,17 @@ class MainScene(Scene):
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const checkRenderStatus = async (renderId) => {
+    const checkStatus = async (renderId) => {
         try {
-            const response = await axios.get(`/api/status/${renderId}`);
-            if (response.data.status === 'complete') {
-                setVideoUrl(response.data.url);
+            const { data } = await axios.get(`/api/status/${renderId}`);
+            if (data.status === 'complete') {
+                setVideoUrl(data.url + `?t=${Date.now()}`);
                 setLoading(false);
             } else {
-                setTimeout(() => checkRenderStatus(renderId), 2000);
+                setTimeout(() => checkStatus(renderId), 2000);
             }
         } catch (err) {
-            setError('Error checking render status');
+            setError('Failed to check render status');
             setLoading(false);
         }
     };
@@ -35,10 +35,8 @@ class MainScene(Scene):
         setLoading(true);
         setError('');
         try {
-            const response = await axios.post('/api/render', {
-                script: code
-            });
-            checkRenderStatus(response.data.render_id);
+            const { data } = await axios.post('/api/render', { script: code });
+            checkStatus(data.render_id);
         } catch (err) {
             setError(err.response?.data?.detail || 'Render failed');
             setLoading(false);
@@ -49,32 +47,29 @@ class MainScene(Scene):
         <div className="editor-container">
             <div className="editor-header">
                 <h2>Manim Editor</h2>
-                <button 
-                    onClick={handleRender}
-                    disabled={loading}
-                >
-                    {loading ? 'Rendering...' : 'Render Animation'}
+                <button onClick={handleRender} disabled={loading}>
+                    {loading ? 'Rendering...' : 'Render'}
                 </button>
             </div>
             
             <Editor
                 height="60vh"
                 defaultLanguage="python"
-                defaultValue={code}
-                onChange={(value) => setCode(value)}
-                options={{
+                value={code}
+                onChange={setCode}
+                options={{ 
                     minimap: { enabled: false },
-                    fontSize: 14
+                    fontSize: 14,
+                    scrollBeyondLastLine: false
                 }}
             />
             
-            {error && <div className="error-message">{error}</div>}
+            {error && <div className="error">{error}</div>}
             
             {videoUrl && (
-                <div className="video-preview">
-                    <video controls autoPlay>
+                <div className="video-container">
+                    <video key={videoUrl} controls autoPlay>
                         <source src={videoUrl} type="video/mp4" />
-                        Your browser does not support the video tag.
                     </video>
                 </div>
             )}

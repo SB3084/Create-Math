@@ -1,6 +1,6 @@
-fastapi==0.95.2
-uvicorn==0.22.0
-python-multipart==0.0.6
-python-dotenv==1.0.0
-manim==0.17.3
-moviepy
+fastapi>=0.95.0
+uvicorn>=0.21.0
+python-multipart>=0.0.6
+manim>=0.17.3
+aiofiles>=23.1.0
+python-dotenv>=1.0.0
