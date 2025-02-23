@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - manim-media:/app/media
+      - manim-static:/app/static
+    environment:
+      - PRODUCTION=true
+      - MANIM_QUALITY=medium
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  manim-media:
+  manim-static:

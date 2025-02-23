@@ -1,0 +1,73 @@
+:root {
+    font-family: 'Fira Code', monospace;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+  }
+  
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dark {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  .light {
+    background: #f8f9fa;
+    color: #213547;
+  }
+  
+  .app-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .app-title {
+    margin: 0;
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, #646cff, #61dafb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .theme-toggle {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.1);
+  }
+  
+  .app-footer {
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid #333;
+    margin-top: auto;
+  }
+  
+  /* Add beautiful scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #2d2d2d;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #646cff;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #535bf2;
+  }
