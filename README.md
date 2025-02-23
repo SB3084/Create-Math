@@ -159,7 +159,6 @@ server {
 - 📝 Input validation for scripts
 
 **View Logs**
-
 # Backend logs
 docker logs create-math-backend-1
 
